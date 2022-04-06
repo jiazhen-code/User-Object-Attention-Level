@@ -159,7 +159,7 @@ class PersonSplit():
         print(gd.shape)
         np.savetxt('gd.txt', gd)
 
-    def get_person_choose(self, clu_cs, group=10, person_num=30, filter_times=10):
+    def get_person_choose(self, clu_cs, group=10, person_num=30, filter_times=10, chose_group=3):
 
         clu_ls = init_list_of_objects(group)
         for seg in self.seg_files:
@@ -174,7 +174,7 @@ class PersonSplit():
             # select_id = person % len(clu_ls)
             person = str(person)
             person_image = []
-            for tt in range(3):
+            for tt in range(chose_group):
                 select_id = np.random.randint(len(clu_ls))
                 person_image += clu_ls[select_id]
             np.random.shuffle(person_image)
@@ -324,7 +324,7 @@ c.seg2Hist()
 c.get_person_all()
 
 clu_cs, group = PersonSplit.getCluRes()
-person_choose = c.get_person_choose(clu_cs, group)
+person_choose = c.get_person_choose(clu_cs, group, chose_group=1)
 # print(person_choose)
 
 #
