@@ -72,6 +72,6 @@ if __name__ == '__main__':
     s = ''
     for k in person_choose:
         s+=' '.join(person_choose[k].keys())+'\n'
-    w = open('pd.txt', 'w')
+    w = open('experiment.txt', 'w')
     w.write(s)
     w.close()
