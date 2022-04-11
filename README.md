@@ -16,23 +16,20 @@ Here you can descibe how the data is organized in this whole dataset. How the da
 UOAL/
   -Images/
     -1.jpg
-    -...
+    - ...
     -1000.jpg
   -Labels/
     -1.txt
-    -...
+    - ...
     -1000.txt
   -Attention/
     -User1/
       -1.npy
-      -...
+      - ...
       -1000.npy
     -User2/
-    -...
-    -User30
-   
-  -README.md
-
+    - ...
+    -User30/
 ```
 
 ### And file formats
