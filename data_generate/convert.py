@@ -10,9 +10,9 @@ from tqdm import tqdm
 import numpy as np
 import pandas as pd
 
-save = 'UOAL/Labels'
-raw_image = 'UOAL/Images'
-fix = 'UOAL/Attention'
+save = '../UOAL/Labels'
+raw_image = '../UOAL/Images'
+fix = '../UOAL/Attention'
 
 # save = '/Users/liujiazhen/Downloads/pas_save_new'
 # raw_image = '/Users/liujiazhen/Downloads/all_images_release'
@@ -54,32 +54,7 @@ class PersonSplit():
                            119, 120, 123, 124, 125, 127, 131, 132,
                            134, 135, 136, 137, 138, 139, 141, 142, 143,
                            144, 146, 147, 148, 149]
-        print(np.array(ade_classes())[self.raw_filter])
-        # exit(1)
-        # SAVE############################################
-        # sf = 1
-        # for file in tqdm(self.seg_files):
-        #     seg_file = os.path.join(self.seg_path, file)
-        #     img_file = os.path.join(self.image_path, file.replace(self.seg_suffix, self.image_suffix, ))
-        #
-        #     assert os.path.exists(img_file)
-        #     assert os.path.exists(seg_file)
-        #
-        #     shutil.copy(seg_file, os.path.join('UOAL/Labels/'+str(sf)+'.txt'))
-        #     shutil.copy(img_file, os.path.join('UOAL/Images/' + str(sf) + '.jpg'))
-        #
-        #     for fs in self.fix_map_files:
-        #         if not os.path.isdir(os.path.join(self.fix_map_path, fs)):
-        #             continue
-        #         user_attention = os.path.join(self.fix_map_path, fs, file.replace(self.seg_suffix, self.fix_suffix, ))
-        #         assert os.path.exists(user_attention)
-        #         sd = os.path.join('UOAL/Attention/'+fs.replace('Sub_', 'User'))
-        #         if not os.path.exists(sd):
-        #             os.makedirs(sd)
-        #         rd = cv2.imread(user_attention, -1)
-        #         np.save(os.path.join(sd, str(sf)+'.npy'), rd)
-        #     sf+=1
-        # SAVE############################################
+
         for file in tqdm(self.seg_files):
             self.pre_load_seg[file] = np.loadtxt(os.path.join(self.seg_path, file)).astype(int)
         for file in tqdm(self.fix_map_files):
@@ -90,17 +65,7 @@ class PersonSplit():
                 if sub_file.split(self.fix_suffix)[0]+self.seg_suffix not in self.seg_files:
                     continue
                 self.pre_load_fix[file][sub_file] = np.load(os.path.join(self.fix_map_path, file, sub_file))
-        a = 1
-        # for file in self.image_files:
-        #     self.pre_load_seg[file] = cv2.imread(os.path.join(self.image_path, file), -1)
 
-        # self.raw_filter = [
-        #     9, 11, 15, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 35, 37, 40, 41, 42, 43, 44,
-        #     45, 46, 47, 48, 50, 51, 52, 55, 56
-        #     , 58, 63, 64, 65, 67, 68, 70, 72, 76, 77, 81, 84, 87, 89, 90, 91, 93, 94, 99, 101, 103, 109, 113, 116, 117,
-        #     120, 128, 133, 136, 138, 142, 143
-        #     , 144, 145
-        # ]
         print(len(self.raw_filter))
         s = 0
         self.filter = {}
@@ -109,7 +74,7 @@ class PersonSplit():
             s += 1
 
     @staticmethod
-    def getCluRes(path='label.txt', suffix='.txt'):
+    def getCluRes(path='clu_label.txt', suffix='.txt'):
         """
         Parameters
         ----------
@@ -311,7 +276,7 @@ class PersonSplit():
         Zmax, Zmin = hots.max(axis=0), hots.min(axis=0)
 
         hots = (hots - Zmin) / (Zmax - Zmin + 1e-6)
-        np.savetxt('hots.txt', hots)
+        # np.savetxt('hots.txt', hots)
         estimator = KMeans(n_clusters=5, max_iter=100, tol=0.001)
         # 实现聚类结果
         estimator.fit(hots)
@@ -319,7 +284,7 @@ class PersonSplit():
         strr = ''
         for s, i in enumerate(person_image):
             strr += 'seg\\'+i+'\t'+str(label[s])+'\n'
-        f = open('label.txt', 'w')
+        f = open('clu_label.txt', 'w')
         f.write(strr)
         f.close()
 
