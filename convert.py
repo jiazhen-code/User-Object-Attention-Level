@@ -1,4 +1,6 @@
 import os
+import shutil
+
 import numpy as np
 import json
 import matplotlib.pyplot as plt
@@ -8,9 +10,14 @@ from tqdm import tqdm
 import numpy as np
 import pandas as pd
 
-save = '/Users/liujiazhen/Downloads/pas_save_new'
-raw_image = '/Users/liujiazhen/Downloads/all_images_release'
-fix = '/Users/liujiazhen/Downloads/fixation_map_30_release'
+save = 'UOAL/Labels'
+raw_image = 'UOAL/Images'
+fix = 'UOAL/Attention'
+
+# save = '/Users/liujiazhen/Downloads/pas_save_new'
+# raw_image = '/Users/liujiazhen/Downloads/all_images_release'
+# fix = '/Users/liujiazhen/Downloads/fixation_map_30_release'
+
 
 def init_list_of_objects(size):
     list_of_objects = list()
@@ -26,10 +33,10 @@ class PersonSplit():
 
         self.seg_files = os.listdir(seg_path)[:]
         self.seg_suffix = '.txt'
-        # self.image_files = os.listdir(image_path)[:]
-        # self.image_suffix = '.jpg'
+        self.image_files = os.listdir(image_path)[:]
+        self.image_suffix = '.jpg'
         self.fix_map_files = os.listdir(fix_map_path)[:]  # contain dirs
-        self.fix_suffix = '.png'
+        self.fix_suffix = '.npy'
 
         self.pre_load_seg = {}
         self.pre_load_fix = {}
@@ -49,7 +56,30 @@ class PersonSplit():
                            144, 146, 147, 148, 149]
         print(np.array(ade_classes())[self.raw_filter])
         # exit(1)
-
+        # SAVE############################################
+        # sf = 1
+        # for file in tqdm(self.seg_files):
+        #     seg_file = os.path.join(self.seg_path, file)
+        #     img_file = os.path.join(self.image_path, file.replace(self.seg_suffix, self.image_suffix, ))
+        #
+        #     assert os.path.exists(img_file)
+        #     assert os.path.exists(seg_file)
+        #
+        #     shutil.copy(seg_file, os.path.join('UOAL/Labels/'+str(sf)+'.txt'))
+        #     shutil.copy(img_file, os.path.join('UOAL/Images/' + str(sf) + '.jpg'))
+        #
+        #     for fs in self.fix_map_files:
+        #         if not os.path.isdir(os.path.join(self.fix_map_path, fs)):
+        #             continue
+        #         user_attention = os.path.join(self.fix_map_path, fs, file.replace(self.seg_suffix, self.fix_suffix, ))
+        #         assert os.path.exists(user_attention)
+        #         sd = os.path.join('UOAL/Attention/'+fs.replace('Sub_', 'User'))
+        #         if not os.path.exists(sd):
+        #             os.makedirs(sd)
+        #         rd = cv2.imread(user_attention, -1)
+        #         np.save(os.path.join(sd, str(sf)+'.npy'), rd)
+        #     sf+=1
+        # SAVE############################################
         for file in tqdm(self.seg_files):
             self.pre_load_seg[file] = np.loadtxt(os.path.join(self.seg_path, file)).astype(int)
         for file in tqdm(self.fix_map_files):
@@ -59,7 +89,8 @@ class PersonSplit():
             for sub_file in os.listdir(os.path.join(self.fix_map_path, file)):
                 if sub_file.split(self.fix_suffix)[0]+self.seg_suffix not in self.seg_files:
                     continue
-                self.pre_load_fix[file][sub_file] = cv2.imread(os.path.join(self.fix_map_path, file, sub_file), -1)
+                self.pre_load_fix[file][sub_file] = np.load(os.path.join(self.fix_map_path, file, sub_file))
+        a = 1
         # for file in self.image_files:
         #     self.pre_load_seg[file] = cv2.imread(os.path.join(self.image_path, file), -1)
 
@@ -115,7 +146,7 @@ class PersonSplit():
                 im = im.replace(self.seg_suffix, '')
                 seg_result = self.pre_load_seg[im + self.seg_suffix]
                 # fix_file = os.path.join(fix, 'Sub_' + str(person + 1), im+self.fix_suffix)
-                fix_im = self.pre_load_fix['Sub_' + str(int(person) + 1)][im + self.fix_suffix]
+                fix_im = self.pre_load_fix['User' + str(int(person) + 1)][im + self.fix_suffix]
                 if not fix_im.shape == seg_result.shape:
                     print(im)
                     continue
@@ -184,7 +215,7 @@ class PersonSplit():
             for im in tqdm(person_image):
                 seg_result = self.pre_load_seg[im+self.seg_suffix]
                 # fix_file = os.path.join(fix, 'Sub_' + str(person + 1), im+self.fix_suffix)
-                fix_im = self.pre_load_fix['Sub_' + str(int(person) + 1)][im+self.fix_suffix]
+                fix_im = self.pre_load_fix['User' + str(int(person) + 1)][im+self.fix_suffix]
                 if not fix_im.shape == seg_result.shape:
                     print(im)
                     continue
@@ -324,7 +355,7 @@ c.seg2Hist()
 c.get_person_all()
 
 clu_cs, group = PersonSplit.getCluRes()
-person_choose = c.get_person_choose(clu_cs, group, chose_group=1)
+person_choose = c.get_person_choose(clu_cs, group, chose_group=3)
 # print(person_choose)
 
 #
