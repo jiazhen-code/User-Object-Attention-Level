@@ -75,12 +75,12 @@ https://github.com/ZwwWayne/K-Net/
 
 We show how to use UOAL to generate randomly the sparse user-object-attention matrix for the reasearch of virtual Metaverse services.
 
-Download UOAL to ./UOAL in advance
+Download UOAL to ./UOAL in advance, and run:
 ```shell
 cd ./data_generate
 python convert.py  
 ```
-Then you obtain the output file `my_rating.csv` that contains four columns, i.e.,  `userId,objectId,rating,timestamp`. Note that the final column `timestamp` is useless.
+Then you obtain the output file `my_rating.csv` that contains four columns, i.e.,  `userId,objectId,rating,timestamp`.
 
 You could change `n_clusters` to decide the number of clusters, and `chose_group` to decide the number of images per user sees.
 
