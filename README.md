@@ -1,7 +1,41 @@
 # User-Object-Attention-Level
 
 # About Dataset
-Ninety-Six different kinds of object labels are given as
+
+
+## About Data collection methodology
+
+https://github.com/xuyanyu-shh/Personalized-Saliency
+
+### Description of the data
+
+The complete UOAL can be downloaded from the following Google drive link:
+
+https://drive.google.com/drive/folders/1x8NIiA6gxxMBHPebEoxNAd1a7sHc7g_Y?usp=sharing
+
+The file structure is
+```
+UOAL/
+  -Images/
+    -1.jpg
+    - ...
+    -1000.jpg
+  -Labels/
+    -1.txt
+    - ...
+    -1000.txt
+  -Attention/
+    -User1/
+      -1.npy
+      - ...
+      -1000.npy
+    -User2/
+    - ...
+    -User30/
+```
+where "**Images**" contains the original filtered 1000 images, "**Attention**" contains 30 X 1000 npy files to show the users' attention to each image, and "**Labels**" contains 1000 txt files to show the labels in each corresponding figure. 
+
+The total 96 kinds of object labels are:
 'wall', 'building', 'sky', 'floor', 'tree', 'ceiling', 'road', 'bed ',
         'windowpane', 'grass', 'cabinet', 'sidewalk', 'person', 'earth',
         'door', 'table', 'mountain', 'plant', 'curtain', 'chair', 'car',
@@ -26,34 +60,6 @@ Ninety-Six different kinds of object labels are given as
         'vase', 'traffic light', 'tray', 'ashcan', 'fan', 'pier', 'crt screen',
         'plate', 'monitor', 'bulletin board', 'shower', 'radiator', 'glass',
         'clock', 'flag'
-
-## About Data collection methodology
-
-This description gives a detailed process on how the data was collected. It should describe the conditions under which the data was recorded and also the devices used to record the data.
-
-### Description of the data
-
-Here you can descibe how the data is organized in this whole dataset. How the data is stored in all the files. You also have to brief about the naming convention of the files in different directories. 
-
-```
-UOAL/
-  -Images/
-    -1.jpg
-    - ...
-    -1000.jpg
-  -Labels/
-    -1.txt
-    - ...
-    -1000.txt
-  -Attention/
-    -User1/
-      -1.npy
-      - ...
-      -1000.npy
-    -User2/
-    - ...
-    -User30/
-```
 
 ### And file formats
 
