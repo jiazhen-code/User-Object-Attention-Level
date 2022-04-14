@@ -2,7 +2,7 @@
 
 User-Object-Attention Level (UOAL) is a dataset that contains the ground truth attentions of *30 users* to *96 objects* obtained from *1000 images*. UOAL can be used to study the attention distribution of different users to different objects in the virtual Metaverse services. 
 
-With the help of UOAl, we can simulate the sparse user-object interaction records and help to design the resource allocation algorithm for virtual services.
+With the help of UOAL, we can simulate the sparse user-object interaction records and help to design the resource allocation algorithm for virtual services.
 
 ## Description of UOAL
 
