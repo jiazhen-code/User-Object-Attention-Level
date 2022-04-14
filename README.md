@@ -80,9 +80,9 @@ Download UOAL to ./UOAL in advance
 cd ./data_generate
 python convert.py  
 ```
-Then you should get the output file`my_rating.csv`, consisting of four columns  `userId,objectId,rating,timestamp`, and the final column `timestamp` is useless for the time being.
+Then you obtain the output file `my_rating.csv` that contains four columns, i.e.,  `userId,objectId,rating,timestamp`. Note that the final column `timestamp` is useless.
 
-You could change `n_clusters` to decide the number of clusters, and `chose_group` decides the number of pictures per user.
+You could change `n_clusters` to decide the number of clusters, and `chose_group` to decide the number of images per user sees.
 
 
 
