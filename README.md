@@ -1,8 +1,12 @@
 # User-Object-Attention Level (UOAL) Dataset
 
-User-Object-Attention Level (UOAL) is a dataset that contains the ground truth attentions of 30 users to 96 objects obtained from 1000 images. UOAL can be used to study the attention distribution of different users to different objects in the virtual metaverse service. We can use UOAL to simulate the sparse user-object interaction records and help to design the resource allocation algorithm for virtual services.
+User-Object-Attention Level (UOAL) is a dataset that contains the ground truth attentions of *30 users* to *96 objects* obtained from *1000 images*. UOAL can be used to study the attention distribution of different users to different objects in the virtual Metaverse services. 
+
+With the help of UOAl, we can simulate the sparse user-object interaction records and help to design the resource allocation algorithm for virtual services.
 
 ## Description of UOAL
+
+### Dataset Structure
 
 The complete UOAL can be downloaded from the following Google drive link:
 
@@ -56,7 +60,7 @@ The total 96 kinds of object labels are:
         'plate', 'monitor', 'bulletin board', 'shower', 'radiator', 'glass',
         'clock', 'flag'
 
-## Data Collection Methodology
+### Data Collection Method
 The original images and the corresponding attention values are from *PSM*, a personalized saliency map dataset, where an "*Eyefollower*" eye tracker is used to record each individual's gaze patterns and produce a set of 48,000 (1600 × 30) eye fixation maps.
 
 For more details about PSM, please refer to the following Github link:
@@ -66,6 +70,12 @@ Here, the 1000 images are manually selected, and the labels are obtained with th
 
 For more details about K-Net, please refer to the following Github link:
 https://github.com/ZwwWayne/K-Net/
+
+## Description of Codes
+
+We show how to use UOAL to generate randomly the sparse user-object-attention matrix for the reasearch of virtual Metaverse services.
+
+
 
 
 ## Reference
