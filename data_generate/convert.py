@@ -260,7 +260,7 @@ class PersonSplit():
                 persons_value[p][c] = judge
         return persons_value, values
 
-    def seg2Hist(self):
+    def seg2Hist(self, n_clusters=5):
         from sklearn.cluster import KMeans
         cls = 150
         hots = []
@@ -277,7 +277,7 @@ class PersonSplit():
 
         hots = (hots - Zmin) / (Zmax - Zmin + 1e-6)
         # np.savetxt('hots.txt', hots)
-        estimator = KMeans(n_clusters=5, max_iter=100, tol=0.001)
+        estimator = KMeans(n_clusters=n_clusters, max_iter=100, tol=0.001)
         # 实现聚类结果
         estimator.fit(hots)
         label = estimator.labels_
@@ -294,18 +294,18 @@ class ConvertFix2Ranking():
         self.person_choose = person_choose
 
     def convert2Rating(self):
-        colunm = ['userId', 'movieId', 'rating', 'timestamp']
+        colunm = ['userId', 'objectId', 'rating', 'timestamp']
         df = pd.DataFrame()
         # for i in colunm:
         #     df[i] = data[i]
-        data = {'userId':[], 'movieId':[], 'rating':[], 'timestamp':[]}
+        data = {'userId':[], 'objectId':[], 'rating':[], 'timestamp':[]}
 
         for p in self.person_choose:
             value = person_choose[p]
 
             for cls in value:
                 data['userId'].append(int(p))
-                data['movieId'].append(int(cls))
+                data['objectId'].append(int(cls))
                 data['rating'].append(float(value[cls]))
 
         data['timestamp'] = data['rating'].copy()
@@ -315,12 +315,15 @@ class ConvertFix2Ranking():
         df.to_csv('my_rating.csv', index=False)
 
 
+n_clusters = 5
+chose_group = 3
+
 c = PersonSplit(save, raw_image, fix)
-c.seg2Hist()
+c.seg2Hist(n_clusters=n_clusters)
 c.get_person_all()
 
 clu_cs, group = PersonSplit.getCluRes()
-person_choose = c.get_person_choose(clu_cs, group, chose_group=3)
+person_choose = c.get_person_choose(clu_cs, group, chose_group=chose_group)
 # print(person_choose)
 
 #
