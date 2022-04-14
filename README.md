@@ -1,13 +1,8 @@
-# User-Object-Attention-Level
+# User-Object-Attention Level (UOAL) Dataset
 
-# About Dataset
+User-Object-Attention Level (UOAL) is a dataset that contains the ground truth attentions of 30 users to 96 objects obtained from 1000 images. UOAL can be used to study the attention distribution of different users to different objects in the virtual metaverse service. We can use UOAL to simulate the sparse user-object interaction records and help to design the resource allocation algorithm for virtual services.
 
-
-## About Data collection methodology
-
-https://github.com/xuyanyu-shh/Personalized-Saliency
-
-### Description of the data
+## Description of the data
 
 The complete UOAL can be downloaded from the following Google drive link:
 
@@ -61,16 +56,13 @@ The total 96 kinds of object labels are:
         'plate', 'monitor', 'bulletin board', 'shower', 'radiator', 'glass',
         'clock', 'flag'
 
-### And file formats
+## About Dataset
 
-If the data includes images or audio, you can mention the file format eg.(.svg, .png, .mpeg).
-```
--500 images, format svg.
-```
 
-## Online Repository link
+## About Data collection methodology
 
-* [DataRepository](https://www.kaggle.com/datasets) - Link to the data repository.
+https://github.com/xuyanyu-shh/Personalized-Saliency
+
 
 ## Authors
 
