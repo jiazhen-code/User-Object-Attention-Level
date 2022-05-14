@@ -1,6 +1,8 @@
 # User-Object-Attention Level (UOAL) Dataset
 
-User-Object-Attention Level (UOAL) is a dataset that contains the ground truth attentions of *30 users* to *96 objects* obtained from *1000 images*. UOAL can be used to study the attention distribution of different users to different objects in the virtual Metaverse services. 
+User-Object-Attention Level (UOAL) is a dataset that contains the ground truth attentions of *30 users* to *96 objects* obtained from *1000 images*. UOAL can be used to study the attention distribution of different users to different objects in the virtual Metaverse services.
+
+**More data will be updated in UOAL in the future**
 
 With the help of UOAL, we can simulate the sparse user-object interaction records and help to design the resource allocation algorithm for virtual services.
 
@@ -11,7 +13,7 @@ With the help of UOAL, we can simulate the sparse user-object interaction record
 The complete UOAL can be downloaded from the following Google drive link:
 
 <!-- https://drive.google.com/drive/folders/1x8NIiA6gxxMBHPebEoxNAd1a7sHc7g_Y?usp=sharing -->
-**the link will be relased when our paper is accepted**
+**the link will be released after our paper is accepted**
 
 The file structure is
 ```
