@@ -10,7 +10,8 @@ With the help of UOAL, we can simulate the sparse user-object interaction record
 
 The complete UOAL can be downloaded from the following Google drive link:
 
-https://drive.google.com/drive/folders/1x8NIiA6gxxMBHPebEoxNAd1a7sHc7g_Y?usp=sharing
+<!-- https://drive.google.com/drive/folders/1x8NIiA6gxxMBHPebEoxNAd1a7sHc7g_Y?usp=sharing -->
+**the link will be relased when our paper is accepted**
 
 The file structure is
 ```
