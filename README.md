@@ -69,7 +69,7 @@ The original images and the corresponding attention values are from *PSM*, a per
 For more details about PSM, please refer to the following Github link:
 https://github.com/xuyanyu-shh/Personalized-Saliency
 
-Here, the 1000 images are manually selected, and the labels are obtained with the help of *K-Net* (K-Net:Towards Unified Image Segmentation), a semantic segmentation algorithm.
+Here, the 1000 images are manually selected, and the labels are obtained with the help of *K-Net* (“K-Net: Towards Unified Image Segmentation”, *Advances in Neural Information Processing Systems*), a semantic segmentation algorithm.
 
 For more details about K-Net, please refer to the following Github link:
 https://github.com/ZwwWayne/K-Net/
